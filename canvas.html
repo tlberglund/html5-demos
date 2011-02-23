@@ -9,12 +9,9 @@
 }
 </style>
 <body>
-  <canvas width="600" height="600" id="logo"></canvas>
+  <canvas width="300" height="300" id="logo"></canvas>
   
 <script>
-  var canvas = document.getElementById('logo');
-  var ctx = canvas.getContext('2d');
-  
   var polygons = [
     { 
       fillStyle: '#e44d26',
@@ -54,6 +51,10 @@
     context.fill();
   };
 
+  var canvas = document.getElementById('logo');
+  var ctx = canvas.getContext('2d');
+  ctx.scale(0.5, 0.5);
+  
   var n;
   for(n = 0; n < polygons.length; n++) {
     drawPoly(ctx, polygons[n]);

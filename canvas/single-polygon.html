@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML5 Canvas Demo</title>
+  </head>
+  <body>
+    <canvas width="300" height="300" id="logo"></canvas>
+    <script>
+      var canvas = document.getElementById('logo');
+      var ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#e44d26';
+      ctx.beginPath();
+      ctx.moveTo(74.633,100.62);
+      ctx.lineTo(437.37,100.62);
+      ctx.lineTo(404.32,470.82);
+      ctx.lineTo(255.78,512);
+      ctx.lineTo(107.64,470.88);
+      ctx.closePath();
+      ctx.fill();
+    </script> 
+  </body>
+</html>

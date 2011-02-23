@@ -3,11 +3,6 @@
 <head>
   <title>HTML5 Canvas Demo</title>
 </head>
-<style>
-#logo {
-  border: 1px solid black;
-}
-</style>
 <body>
   <canvas width="300" height="300" id="logo"></canvas>
   
@@ -41,7 +36,7 @@
   
   var drawPoly = function(context, poly) {
     context.fillStyle = poly.fillStyle;
-    context.beginPath()
+    context.beginPath();
     context.moveTo(poly.points[0], poly.points[1]);
     var n;
     for(n = 2; n < poly.points.length; n += 2) {

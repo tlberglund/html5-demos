@@ -11,14 +11,14 @@ p {
 </head>
 <body>
   <h2>This is a demonstration of the native HTML5 Geolocation API.</h2>
-  <p>Result: <span id="result"></span></p>
-  <p>Latitude: <span id="latitude"></span></p>
-  <p>Longitude: <span id="longitude"></span></p>
-  <p>Altitude: <span id="altitude"></span></p>
-  <p>Accuracy: <span id="accuracy"></span></p>
-  <p>Altitude Accuracy: <span id="altitude-accuracy"></span></p>
-  <p>Heading: <span id="heading"></span></p>
-  <p>Speed: <span id="speed"></span></p>
+  <p>Result: <span id="result">xx</span></p>
+  <p>Latitude: <span id="latitude">xx</span></p>
+  <p>Longitude: <span id="longitude">xx</span></p>
+  <p>Altitude: <span id="altitude">xx</span></p>
+  <p>Accuracy: <span id="accuracy">xx</span></p>
+  <p>Altitude Accuracy: <span id="altitude-accuracy">xx</span></p>
+  <p>Heading: <span id="heading">xx</span></p>
+  <p>Speed: <span id="speed">xx</span></p>
 <script>
   function clearResults() {
     $('#result').html('--');
@@ -33,15 +33,23 @@ p {
   var geo;
   geo = navigator.geolocation;
   var successCallback = function(position) {
-    console.log(position.timestamp);
-    console.log(position.coords);
+    console.log(position);
+    $('#result').html('SUCCESS');
+    $('#latitude').html(position.coords.latitude);
+    $('#longitude').html(position.coords.longitude);
+    $('#altitude').html(position.coords.altitude);
+    $('#accuracy').html(position.coords.accuracy);
+    $('#altitude-accuracy').html(position.coords.altitudeAccuracy);
+    $('#heading').html(position.coords.heading);
+    $('#speed').html(position.coords.speed);
   };
   var errorCallback = function(error) {
-    $('#result').html = error.message;
+    $('#result').html(error.message);
   }
   
+  console.log('About to call geo API');
+  geo.getCurrentPosition(successCallback, errorCallback);
+  console.log('Asynchronous geo API call returned');
   clearResults();
-  console.log('Calling geo api');
-  geo.getCurrentPosition(successCallback, errorCallback, {timeout: 100});
 </script>
 </body>

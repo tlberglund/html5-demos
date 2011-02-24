@@ -2,14 +2,34 @@
 <html>
 <head>
   <title>HTML5 Geolocation Demo</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<style>
+p {
+  margin: 0 0 0.3em 0;
+}
+</style>
 </head>
 <body>
-  <p>This is a demonstration of the native HTML5 Geolocation API.</p>
+  <h2>This is a demonstration of the native HTML5 Geolocation API.</h2>
+  <p>Result: <span id="result"></span></p>
+  <p>Latitude: <span id="latitude"></span></p>
+  <p>Longitude: <span id="longitude"></span></p>
+  <p>Altitude: <span id="altitude"></span></p>
+  <p>Accuracy: <span id="accuracy"></span></p>
+  <p>Altitude Accuracy: <span id="altitude-accuracy"></span></p>
+  <p>Heading: <span id="heading"></span></p>
+  <p>Speed: <span id="speed"></span></p>
 <script>
-{
-  message: 'Timeout expired'
-}
+  function clearResults() {
+    $('#result').html('--');
+    $('#latitude').html('--');
+    $('#longitude').html('--');
+    $('#altitude').html('--');
+    $('#accuracy').html('--');
+    $('#altitude-accuracy').html('--');
+    $('#heading').html('--');
+    $('#speed').html('--');
+  }
   var geo;
   geo = navigator.geolocation;
   var successCallback = function(position) {
@@ -17,9 +37,11 @@
     console.log(position.coords);
   };
   var errorCallback = function(error) {
-    console.log(error.code + ": " + error.message);
+    $('#result').html = error.message;
   }
+  
+  clearResults();
   console.log('Calling geo api');
-  geo.getCurrentPosition(successCallback, errorCallback, {timeout: 100000000});
+  geo.getCurrentPosition(successCallback, errorCallback, {timeout: 100});
 </script>
 </body>

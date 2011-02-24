@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML5 Web Storage Demo</title>
+<style>
+fieldset {
+  padding: 1em;
+  margin-bottom: 1em;
+  width: 22em;
+}
+legend {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+table {
+  padding: 0;
+  margin: 1em 0 0 0;
+  border: 1px solid black;
+}
+thead {
+  font-family: sans-serif;
+  background: #aaa;
+}
+tbody, #read-value {
+  font-family: monospace;
+}
+tbody td {
+  border-bottom: 1px solid gray;
+  border-left: 1px solid gray;
+  padding-left: 0.5em;
+}
+#read-value {
+  margin-top: 0.5em;
+  padding: 1em;
+  background: #ddd;
+}
+</style>
+</head>
+<body>
+  <h1>Web Storage Demo</h1>
+  <fieldset id="writing">
+    <legend>Writing</legend>
+    <div>
+      <input type="text" id="write-key" placeholder="Enter key"/>
+    </div>
+    <div>
+      <textarea id="write-value" rows="10" cols="40" placeholder="Enter value (JSON allowed)"></textarea>
+    </div>
+    <div>
+      <input type="button" id="write" value="Write"/>
+    </div>
+  </fieldset>
+  <fieldset id="reading">
+    <legend>Reading</legend>
+    <div>
+      <input type="text" id="read-key" placeholder="Enter key"/>
+      <input type="button" id="read" value="Read"/>
+    </div>
+    <div id="read-value"></div>
+  </fieldset>
+  <fieldset id="Listing">
+    <legend>Listing</legend>
+    <input type="button" id="list-keys" value="List Keys" />
+    <table cellspacing="0"  id="keys">
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </fieldset>
+
+<script src="../js/json2.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script>
+
+  var listKeys = function() {
+    var localStorage = window.localStorage;
+    var n;
+    $('#keys tbody').html('');
+    for(n = 0; n < localStorage.length; n++) {
+      var key = localStorage.key(n);
+      var value = localStorage[key];
+      console.log(key+'='+value);
+      var rowMarkup = "<tr><td>" + key + "</td><td>" + value + "</td></tr>";
+      $('#keys tbody').append(rowMarkup);
+    }
+  };
+  
+  var writeKey = function() {
+    var key = $('#write-key').val();
+    var value = $('#write-value').val();
+    var valueObject = JSON.parse(value);
+    console.log("WRITING " + key + "=" + valueObject);
+    window.localStorage[key] = value;
+  };
+  
+  var readKey = function() {
+    var key = $('#read-key').val();
+    var value = window.localStorage[key];
+    console.log("READ " + key + "=" + value);
+    $('#read-value').html(value);
+  }
+
+  $(document).ready(function() {
+    $('#list-keys').click(listKeys);
+    $('#write').click(writeKey);
+    $('#read').click(readKey);
+  });
+  
+</script>
+<script></script>
+</body>

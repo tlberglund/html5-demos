@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>HTML5 Geolocation Demo</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
 <style>
 p {
   margin: 0 0 0.3em 0;
@@ -22,19 +21,19 @@ p {
   <p>
     <input type="checkbox" id="high-accuracy"/>
     <label for="high-accuracy">Enable high accuracy</label>
-    </p>
+  </p>
   <p>
     <input type="checkbox" id="watch-position"/>
     <label for="watch-position">Refresh every:</label>
     <input type="text" id="refresh-timeout" value="1000">
-    </p>
+  </p>
   <input type="button" id="geolocate" value="Geolocate"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
 <script>
   var highAccuracy = false;
   var watchTimeout = 0;
   var watchId;
-  var geo;
-  geo = navigator.geolocation;
+  var geo = navigator.geolocation;
   
   var clearResults = function() {
     $('#result').html('--');

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML5 Geolocation Demo</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js" />
+</head>
+<body>
+  <p>This is a demonstration of the native HTML5 Geolocation API.</p>
+<script>
+{
+  message: 'Timeout expired'
+}
+  var geo;
+  geo = navigator.geolocation;
+  var successCallback = function(position) {
+    console.log(position.timestamp);
+    console.log(position.coords);
+  };
+  var errorCallback = function(error) {
+    console.log(error.code + ": " + error.message);
+  }
+  console.log('Calling geo api');
+  geo.getCurrentPosition(successCallback, errorCallback, {timeout: 100000000});
+</script>
+</body>

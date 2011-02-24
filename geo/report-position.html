@@ -30,6 +30,12 @@ p {
     </p>
   <input type="button" id="geolocate" value="Geolocate"/>
 <script>
+  var highAccuracy = false;
+  var watchTimeout = 0;
+  var watchId;
+  var geo;
+  geo = navigator.geolocation;
+  
   function clearResults() {
     $('#result').html('--');
     $('#latitude').html('--');
@@ -40,8 +46,7 @@ p {
     $('#heading').html('--');
     $('#speed').html('--');
   }
-  var geo;
-  geo = navigator.geolocation;
+
   var successCallback = function(position) {
     console.log(position);
     $('#result').html('SUCCESS');
@@ -53,18 +58,36 @@ p {
     $('#heading').html(position.coords.heading);
     $('#speed').html(position.coords.speed);
   };
+  
   var errorCallback = function(error) {
     $('#result').html(error.message);
   }
   
-  var highAccuracy = false;
-  var watchTimeout = 0;
-  var watchId;
+  function getPosition() {
+    console.log('About to get position');
+    geo.getCurrentPosition(successCallback, 
+                           errorCallback, 
+                           { 
+                             enableHighAccuracy: highAccuracy 
+                           });
+  }
+  
+  function watchPosition() {
+    console.log('About to watch position every ' + watchTimeout);
+    watchId = geo.watchPosition(successCallback, 
+                                errorCallback, 
+                                { 
+                                  timeout: watchTimeout, 
+                                  enableHighAccuracy: highAccuracy 
+                                });
+  }
   
   $(document).ready(function() {
-    clearResults();
     $('#geolocate').click(function(event) { 
+      clearResults();
+      
       highAccuracy = $('#high-accuracy:checked').length == 1;
+      
       if($('#watch-position:checked').length == 1) {
         watchTimeout = parseInt($('#refresh-timeout').val());
       }
@@ -72,22 +95,15 @@ p {
         watchTimeout = 0;
       }
 
+      if(watchId) {
+        geo.clearWatch(watchId);
+      }
+
       if(watchTimeout) {
-        console.log('About to watch position every ' + watchTimeout);
-        watchId = geo.watchPosition(successCallback, 
-                                    errorCallback, 
-                                    { 
-                                      timeout: watchTimeout, 
-                                      enableHighAccuracy: highAccuracy 
-                                    });
+        watchPosition();
       }
       else {
-        console.log('About to get position');
-        geo.getCurrentPosition(successCallback, 
-                               errorCallback, 
-                               { 
-                                 enableHighAccuracy: highAccuracy 
-                               });
+        getPosition();
       }
       
       console.log('Asynchronous geo API call returned');

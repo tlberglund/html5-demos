@@ -36,7 +36,7 @@ p {
   var geo;
   geo = navigator.geolocation;
   
-  function clearResults() {
+  var clearResults = function() {
     $('#result').html('--');
     $('#latitude').html('--');
     $('#longitude').html('--');
@@ -63,7 +63,7 @@ p {
     $('#result').html(error.message);
   }
   
-  function getPosition() {
+  var getPosition = function() {
     console.log('About to get position');
     geo.getCurrentPosition(successCallback, 
                            errorCallback, 
@@ -72,7 +72,7 @@ p {
                            });
   }
   
-  function watchPosition() {
+  var watchPosition = function() {
     console.log('About to watch position every ' + watchTimeout);
     watchId = geo.watchPosition(successCallback, 
                                 errorCallback, 

@@ -19,6 +19,9 @@ p {
   <p>Altitude Accuracy: <span id="altitude-accuracy">xx</span></p>
   <p>Heading: <span id="heading">xx</span></p>
   <p>Speed: <span id="speed">xx</span></p>
+  <p><input type="checkbox" id="high-accuracy"/><label for="high-accuracy">Enable high accuracy</label></p>
+  <p><input type="checkbox" id="watch-position"/><label for="watch-position">Refresh every:</label><input type="text" id="refresh-timeout" value="1000"></p>
+  <input type="button" id="geolocate" value="Geolocate"/>
 <script>
   function clearResults() {
     $('#result').html('--');
@@ -47,9 +50,42 @@ p {
     $('#result').html(error.message);
   }
   
-  console.log('About to call geo API');
-  geo.getCurrentPosition(successCallback, errorCallback, { enableHighAccuracy: true });
-  console.log('Asynchronous geo API call returned');
+  var highAccuracy = false;
+  var watchTimeout = 0;
+  var watchId;
+  
+  $(document).ready(function() {
+    $('#geolocate').click(function(event) { 
+      highAccuracy = $('#high-accuracy:checked').length == 1;
+      if($('#watch-position:checked').length == 1) {
+        watchTimeout = parseInt($('#refresh-timeout').val());
+      }
+      else {
+        watchTimeout = 0;
+      }
+
+      if(watchTimeout) {
+        console.log('About to watch position every ' + watchTimeout);
+        watchId = geo.watchPosition(successCallback, 
+                                    errorCallback, 
+                                    { 
+                                      timeout: watchTimeout, 
+                                      enableHighAccuracy: highAccuracy 
+                                    });
+      }
+      else {
+        console.log('About to get position');
+        geo.getCurrentPosition(successCallback, 
+                               errorCallback, 
+                               { 
+                                 enableHighAccuracy: highAccuracy 
+                               });
+      }
+      
+      console.log('Asynchronous geo API call returned');
+    });
+  });
+  
   clearResults();
 </script>
 </body>

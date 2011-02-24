@@ -48,7 +48,7 @@ p {
   }
 
   var successCallback = function(position) {
-    console.log(position);
+    console.log('Got position at ' + position.timestamp);
     $('#result').html('SUCCESS');
     $('#latitude').html(position.coords.latitude);
     $('#longitude').html(position.coords.longitude);
@@ -96,7 +96,9 @@ p {
       }
 
       if(watchId) {
+        console.log('Clearing watchId ' + watchId)
         geo.clearWatch(watchId);
+        watchId = 0;
       }
 
       if(watchTimeout) {
@@ -105,8 +107,6 @@ p {
       else {
         getPosition();
       }
-      
-      console.log('Asynchronous geo API call returned');
     });
   });
 </script>

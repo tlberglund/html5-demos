@@ -48,7 +48,7 @@ p {
   }
   
   console.log('About to call geo API');
-  geo.getCurrentPosition(successCallback, errorCallback);
+  geo.getCurrentPosition(successCallback, errorCallback, { enableHighAccuracy: true });
   console.log('Asynchronous geo API call returned');
   clearResults();
 </script>

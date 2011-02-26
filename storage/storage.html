@@ -12,7 +12,7 @@
       <input type="text" id="write-key" placeholder="Enter key"/>
     </div>
     <div>
-      <textarea id="write-value" rows="10" cols="40" placeholder="Enter value (JSON allowed)"></textarea>
+      <textarea id="write-value" rows="10" cols="40" placeholder="Enter value (JSON format)"></textarea>
     </div>
     <div>
       <input type="button" id="write" value="Write"/>
@@ -47,12 +47,17 @@
   var listKeys = function() {
     var localStorage = window.localStorage;
     var n;
+    
     $('#keys tbody').html('');
+    
     for(n = 0; n < localStorage.length; n++) {
       var key = localStorage.key(n);
       var value = localStorage[key];
       console.log(key+'='+value);
-      var rowMarkup = "<tr><td>" + key + "</td><td>" + value + "</td></tr>";
+      var rowMarkup = "<tr>" +
+                        "<td>" + key + "</td>" +
+                        "<td>" + value + "</td>" +
+                      "</tr>";
       $('#keys tbody').append(rowMarkup);
     }
   };
@@ -81,3 +86,4 @@
 </script>
 <script></script>
 </body>
+

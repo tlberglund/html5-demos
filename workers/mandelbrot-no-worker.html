@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mandelbrot Set Generator</title>
+  <style>
+#pause-indicator {
+  font-size: 1.5em;
+  font-family: sans-serif;
+}
+  </style>
+</head>
+<body>
+  <h1>HTML5 Mandelbrot Set Generator</h1>
+  <p>Scandalously lacking Web Workers</p>
+  <p id="pause-indicator">Count: <span id="counter">0</span></p>
+  
+  <canvas id="mandelbrot" width="400" height="400"></canvas>
+  <p><a class="zoom-in" href="#">Zoom In</a></p>
+  <p><a class="zoom-out" href="#">Zoom Out</a></p>
+
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/mandelbrot/gradient.js"></script>
+  <script src="../js/mandelbrot/time.js"></script>
+  <script src="../js/mandelbrot/mandelbrot.js"></script>
+  <script src="../js/mandelbrot/main.js"></script>
+  <script>
+    var count = 0;
+    setInterval(function() { $('#counter').html(count++); }, 100);
+  </script>
+</body>

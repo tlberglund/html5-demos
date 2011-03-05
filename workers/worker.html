@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML5: The JavaScript Parts</title>
+</head>
+<body>
+  <p>Welcome to HTML5.</p>
+  
+<script>
+
+    var worker = new Worker('worker.js');
+    worker.onmessage = function(event) {
+      // process message from Worker
+    };
+    worker.postMessage(unitOfWork);
+
+
+</script>
+</body>

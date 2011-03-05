@@ -7,6 +7,10 @@
   font-size: 1.5em;
   font-family: sans-serif;
 }
+#controls {
+  font-size: 2em;
+  font-family: sans-serif;
+}
   </style>
 </head>
 <body>
@@ -15,12 +19,14 @@
   <p id="pause-indicator">Count: <span id="counter">0</span></p>
   
   <canvas id="mandelbrot" width="400" height="400"></canvas>
-  <p><a class="zoom-in" href="#">Zoom In</a></p>
-  <p><a class="zoom-out" href="#">Zoom Out</a></p>
+  <div id="controls">
+    <a class="zoom-in" href="#">IN</a>
+    <a class="zoom-out" href="#">OUT</a>
+  </div>
 
   <script src="../js/jquery.min.js"></script>
   <script src="../js/mandelbrot/gradient.js"></script>
-  <script src="../js/mandelbrot/time.js"></script>
+  <script src="../js/time.js"></script>
   <script src="../js/mandelbrot/mandelbrot.js"></script>
   <script src="../js/mandelbrot/main.js"></script>
   <script>

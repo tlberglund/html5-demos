@@ -49,6 +49,7 @@ p {
 
   var successCallback = function(position) {
     console.log('Got position at ' + position.timestamp);
+    console.log(position);
     $('#result').html('SUCCESS');
     $('#latitude').html(position.coords.latitude);
     $('#longitude').html(position.coords.longitude);
@@ -60,6 +61,8 @@ p {
   };
   
   var errorCallback = function(error) {
+    console.log("Geolocation ERROR");
+    console.log(error);
     $('#result').html(error.message);
   }
   

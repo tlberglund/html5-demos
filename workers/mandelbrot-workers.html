@@ -15,20 +15,17 @@
 </head>
 <body>
   <div><a href="../index.html">Home</a></div>
-  <h1>Browser-Locking Mandelbrot Set Generator</h1>
-  <div id="pause-indicator">Count: <span id="counter">0</span></div/>
+  <h1>Non-Blocking Mandelbrot Set Generator</h1>
+  <div id="pause-indicator">Count: <span id="counter">0</span></div>
   
   <canvas id="mandelbrot" width="400" height="400"></canvas>
   <div id="controls">
     <a class="zoom-in" href="#">IN</a>
     <a class="zoom-out" href="#">OUT</a>
   </div>
-
   <script src="../js/jquery.min.js"></script>
-  <script src="../js/mandelbrot/gradient.js"></script>
   <script src="../js/time.js"></script>
-  <script src="../js/mandelbrot/mandelbrot.js"></script>
-  <script src="../js/mandelbrot/main.js"></script>
+  <script src="../js/mandelbrot-workers/mandelbrot.js"></script>
   <script>
     var count = 0;
     setInterval(function() { $('#counter').html(count++); }, 100);

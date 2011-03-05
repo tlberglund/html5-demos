@@ -67,13 +67,16 @@ function draw_set(context, settings, gradient) {
 
   var width = $('canvas#mandelbrot').width();
   var height = $('canvas#mandelbrot').height();
-
+  var image = context.createImageData(width, height);
+  
   var worker = new Worker('mandelbrot-worker.js');
   console.log(worker);
+  
   worker.onerror = function(error) {
     console.log("MANDELBROT WORKER ERROR:");
     console.log(error);
   }
+  
   worker.onmessage = function(event) {
   	context.putImageData(event.data, 0,0);
   }
@@ -83,7 +86,7 @@ function draw_set(context, settings, gradient) {
     width: width,
     height: height,
     gradient: gradient,
-    image: context.createImageData(width, height)
+    image: image
   };
   
   console.log(work);

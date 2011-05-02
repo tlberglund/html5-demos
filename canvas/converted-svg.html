@@ -18,7 +18,7 @@
   // Converted using http://www.professorcloud.com/svg-to-canvas/
   // (some cleanup required)
 
-  ctx.scale(0.5, 0.5);
+  ctx.scale(.5, .5);
   ctx.translate(0,15);
   
   var angle = 0;
@@ -194,7 +194,9 @@
     $('#animate').click(function() {
       setInterval(function() {
         angle += 2*3.14159 / 100;
+        ctx.save();
         drawH(ctx);
+        ctx.restore();
       }, 10);
     });
   });

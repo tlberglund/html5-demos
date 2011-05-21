@@ -1,0 +1,24 @@
+<!DOCTYPE html manifest="/cache.manifest">
+<html>
+<head>
+  <title>Offline Detection</title>
+  <script src="../js/jquery.min.js"></script>
+</head>
+<body>
+  <p><a href="../index.html">Home</a></p>
+  <h1>Offline Detection</h1>
+  
+  <p>This application is <strong><span id="online-or-offline">----</span></strong>.</p>
+  
+  
+  <script>
+  $(window).ready(function() {
+    if(navigator.onLine) {
+      $('#online-or-offline').html('ONLINE');
+    }
+    else {
+      $('#online-or-offline').html('OFFLINE');
+    }
+  });
+  </script>
+</body>

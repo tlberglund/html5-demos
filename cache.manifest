@@ -4,3 +4,4 @@ CACHE MANIFEST
 /js/jquery.min.js
 /js/json2.js
 /offline/index.html
+/workers/*

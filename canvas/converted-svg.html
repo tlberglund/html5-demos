@@ -8,9 +8,9 @@
     <canvas width="300" height="300" id="logo">
     </canvas>
     
-    <img id="tim" src="https://s3.amazonaws.com/august-tim-blog-images/tim-berglund-large.jpg" style="display:none;">
-    
     <input type="button" id="animate" value="Animate"/>
+    
+    <img id="tim" src="https://s3.amazonaws.com/august-tim-blog-images/tim-berglund-large.jpg" style="display:none;" width="94">
     
 <script src="../js/jquery.min.js"></script>
 <script>  
@@ -118,9 +118,9 @@
   }
 
   function drawH(ctx) {
+    ctx.save();
     ctx.fillStyle = "#000";
     ctx.beginPath();
-    ctx.save();
     ctx.clearRect(95,-15,94,100);
     ctx.translate(142.0115,34.522);
     ctx.rotate(angle);
@@ -136,8 +136,7 @@
     ctx.lineTo(-10.5565,11.402);
     ctx.lineTo(-10.5565,34.522);
     ctx.lineTo(-33.6335,34.522);
-    ctx.lineTo(-33.6335,-34.522);
-    
+    ctx.lineTo(-33.6335,-34.522);    
     ctx.closePath();
     ctx.fill();
     ctx.restore();

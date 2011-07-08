@@ -8,6 +8,8 @@
     <canvas width="300" height="300" id="logo">
     </canvas>
     
+    <img id="tim" src="https://s3.amazonaws.com/august-tim-blog-images/tim-berglund-large.jpg" style="display:none;">
+    
     <input type="button" id="animate" value="Animate"/>
     
 <script src="../js/jquery.min.js"></script>
@@ -118,6 +120,7 @@
   function drawH(ctx) {
     ctx.fillStyle = "#000";
     ctx.beginPath();
+    ctx.save();
     ctx.clearRect(95,-15,94,100);
     ctx.translate(142.0115,34.522);
     ctx.rotate(angle);
@@ -134,10 +137,10 @@
     ctx.lineTo(-10.5565,34.522);
     ctx.lineTo(-33.6335,34.522);
     ctx.lineTo(-33.6335,-34.522);
+    
     ctx.closePath();
     ctx.fill();
-    ctx.rotate(-angle);
-    ctx.translate(-142.0115,-34.522);
+    ctx.restore();
   }
   
   function drawT(ctx) {
@@ -161,7 +164,7 @@
     ctx.lineTo(283.573,0);
     ctx.lineTo(298.383,24.26);
     ctx.lineTo(313.163,0);
-    ctx.lineTo(337.235,0);
+    ctx.lineTo(337.235,0);      // top of right leg
     ctx.lineTo(337.235,69.044);
     ctx.lineTo(314.258,69.044);
     ctx.lineTo(314.258,34.822);

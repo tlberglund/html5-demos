@@ -4,4 +4,8 @@ CACHE MANIFEST
 /js/jquery.min.js
 /js/json2.js
 /offline/index.html
-/worker/*
+/workers/mandelbrot-worker.js
+/workers/mandelbrot-no-worker.js
+/workers/mandelbrot-workers.html
+/workers/worker.js
+/worker/worker.html
